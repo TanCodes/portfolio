@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="css/work.css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="img/favicon_io/site.webmanifest">
+  <! --=========== prism code ===========-->
+  <link rel="stylesheet" href="prism/prism.css">
+
+  <! --==========internal styes============-->
+<style>
+  .steps{
+    text-decoration: underline lightblue;
+    font-size: 1.1rem;
+  }
+
+  #count{
+    background: rgb(46, 46, 46);
+    color: rgb(255, 255, 255);
+    padding: 0.5rem;
+    border-radius: 0.8rem;
+  }
+
+  .nav__list li:last-child .nav__link {
+   color: Red;
+}
+</style>
+
+  <! --==========box icons============-->
+
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
+    <title>TanCodes</title>
+</head>
+
+<body>
+  <! --==========Header============-->
+    <header class="l-header">
+      <nav class="nav bd-grid">
+        <div class="nav__logo_div">
+          <a href="#" class="nav__logo"> <img src="../img/logo_edited.png" alt=">_TanCodes">
+        </div>
+
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="#" class="nav__link active">Work</a>
+            </li>
+            <li class="nav__item">
+              <a href="index.html#home" class="nav__link">Portfolio</a>
+            </li>
+            <li class="nav__item">
+              <a href="index.html#contact" class="nav__link">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="bx bx-menu"></i>
+        </div>
+      </nav>
+    </header>
+    <main class="l-main">
+
+
+      <! --==========Home============-->
+        <section class="home bd-grid" id="home">
+          <div class="home__data">
+            <h2 class="home__title">
+              Login & Registration system with Flask & MySql  
+               <br />
+            </h2> <span id="count">0 <i class="far fa-eye"></i> </span>
+            <div class="home__img">
+              <img src="workimg/flask1.PNG" alt="" />
+            </div>
+
+            <!-- <a href="#" class="button">Contact</a> -->
+          </div>
+          <! --==========links============-->
+            <div class="home__social">
+              <a href="https://www.linkedin.com/in/tanmay-barvi-2a0206126/" target="_blank" class="home__social-icon"><i
+                  class="bx bxl-linkedin"></i></a>
+              <a href="https://github.com/TanCodes" target="_blank" class="home__social-icon"><i
+                  class="bx bxl-github"></i></a>
+              <a href="https://stackexchange.com/users/18443010/tanmay-brv" target="_blank" class="home__social-icon"><i
+                  class="bx bxl-stack-overflow"></i>
+              </a>
+            </div>
+        </section>
+
+        <! --==========about============-->
+
+          <section class="about section" id="about">
+            <div class="about__container bd-grid">
+              
+              <p class="about__text">
+                &#160;&#160; <span style="font-weight: bold;">T</span>his project is on Login & Registration system with Flask & MySql. In this, 
+                I have used Flask, which is a Python web framework built with a small core and easy-to-extend philosophy. It is classified as a 
+                microframework because it does not require particular tools or libraries.
+                <br>
+                Users should create new registration to enter the home page if already a member of the site then 
+                put login details to go to the dashboard of the home page.
+                <br>
+               <span style="font-weight: 600;"> Code on </span>: <a style="text-decoration: underline black;" href="https://github.com/TanCodes/FlaskWeb" target="_blank">Login & Registration system with Flask & MySql</a>
+                <br>
+              <span style="font-weight: 600;"><br>
+                Before jumping into a project, in this website I have focused on mostly Backend with flask. Like how Flask works and all, not on the Front end part. 
+                Just how pages are rendered on browser and Login and Registration in the site.
+              </span>
+                <br><br>
+                <strong>Steps to create this System:</strong> <br>
+                - First, we have to create a folder for our project, eg - FlaskWeb. <br>
+                - In our FlaskWeb folder we have to create one python file for our Backend purpose, eg- route demo. <br>
+                - After that, we have to create our front end part, in this, I have used HTML5, CSS3, and JAVASCRIPT. <br>
+                - In Flask for front-end code we have to store it in a separate folder. For the HTML file, it should be in folder name 'templates' only in that we should create our HTML files 
+                & for CSS file we should create the folder name 'static'. <br>
+                <span style='text-decoration: underline red;'> *You can't give any other name to the templates and static folder.</span>  
+                <br><br>
+                <strong> Front-end part: </strong><br>
+                In the templates folder, I created 3 files of HTML-
+                <br>
+               <span class="steps">1. home.html:</span> 
+                <br>&#160;&#160;  This is the Dashboard of our main page. After the user will log in or register to our website then only this home page will be rendered or else not.
+                <br>
+                <span class="steps"> 2. login.html: </span>
+                <br>&#160;&#160; In this, if the user is already a member of our website and they put the right login information on the login page then only the user will be logged in to the dashboard of the website.
+                <br>
+               <span class="steps"> 3. register.html: </span>
+                <br>&#160;&#160; Any new user visits our site then after filling the right data in the registration page, the user will be redirected to Dashboard. If the new user is trying to register with the existing details like some other user has registered with the same details then it will display an error that the user already exists.
+                <br><br>
+                In the static folder, I created 1 CSS file, style.css
+                <br>
+                In this project, I have used Bootstrap 4 for the design purpose as I have focused more on the Backend part. in this CSS file, I have given color and all to the website. You can put your CSS instead of using Bootstrap.
+               <br> <br>
+               <strong>Back-end part </strong> <br> 
+               For Back-end create python file , eg- routedemo.py
+                <br>
+               This is a code for routedemo.py: <br>
+               Things to import in python <br> <br>
+               First we have to install the required library : 
+               <a href="https://pypi.org/project/Flask/" target="_blank"><strong>pip install Flask</strong></a> <br>
+               <a href="https://pypi.org/project/mysql-connector-python/" target="_blank"><strong>pip install mysql-connector-python</strong></a>
+                  <br> <br>
+
+<pre><code class="language-python"> 
+  ###############-----------------Import packages--------------------#################################
+  from flask import Flask, render_template, request, flash, redirect, session
+  import mysql.connector
+  import os
+  from flask import flash
+  
+  app = Flask(__name__)
+  ###############-----------------sessions--------------------#################################
+  
+  app = Flask(__name__)
+  app.secret_key = os.urandom(24)
+  
+  ###############------------------mysql---------------------##############################
+  
+  conn = mysql.connector.connect(host="localhost", user="root", password="", database="login_validation")
+  cursor = conn.cursor()
+  
+  ###############-------------------HOME-------------------################################
+  
+  @app.route('/home')
+  def home():
+      if 'user_id' in session:
+          return render_template('home.html')
+      else:
+          return redirect('/')
+  
+  #############----------------REGISTER--------------------###################
+  
+  @app.route('/register')
+  def register():
+      return render_template('register.html')
+  
+  ###############-----------REGISTRATION--------------###############################
+  
+  @app.route('/register_validation', methods=['POST'])
+  def register_validation():
+      name = request.form.get('namereg')
+      email = request.form.get('emailreg')
+      password = request.form.get('passwordreg')
+  
+      if not len(password) >= 5:
+          flash('Password must be at least 5 characters in length')
+          return render_template('register.html')
+      else:
+          cursor.execute("INSERT INTO user (id,name,email,password) VALUES (NULL,%s,%s,%s)", 
+          (name, email, password))
+  
+          conn.commit()
+          conn.close()
+  
+          return render_template('home.html')
+  
+  ##########----------------LOGIN-------------------##############################
+  
+  @app.route('/')
+  def login():
+      return render_template('login.html')
+  
+  ############----------------LOGIN_VALIDATION--------------------#######################
+  
+  @app.route('/login_validation', methods=['POST'])
+  def login_validation():
+      email = request.form.get('email')
+      password = request.form.get('password')
+      cursor.execute("SELECT * FROM user WHERE email = %s AND password = %s ",
+       (email, password))
+      users = cursor.fetchall()
+      if len(users) > 0:
+          session['user_id'] = users[0][0]
+          flash('Logged in Successfully!')
+          return redirect('/home')
+  
+      else:
+          flash('Entered Details already exists or are  invalid ')
+          return redirect('/')
+  
+  ###############------------------LOGOUT---------------#################################
+  @app.route('/logout')
+  def logout():
+      session.pop('user_id')
+      return redirect('/')
+  
+  ###################------MAIN-----------############################
+  
+  if __name__ == "__main__":
+      app.run(debug=True)
+</code> </pre>                          
+           </p>
+            </div>  
+          
+            <div class="count-class" style="text-align: center;">
+              <i class="far fa-eye"> 
+                <img src="https://hitwebcounter.com/counter/counter.php?page=7823054&style=0008&nbdigits=1&type=ip&initCount=0" title="page views" Alt="page views" />
+              </i> 
+            </div>
+          </section>
+
+          <! --==========footer============-->
+            <footer class="footer">
+              <p class="footer__title">>_TanCodes</p>
+              <div class="footer__social">
+                <a href="https://www.instagram.com/_tancodes_/" class="footer__icon"  target="_blank"><i class="bx bxl-instagram"></i></a>
+                <a href="https://twitter.com/TanCodes" class="footer__icon"  target="_blank"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.youtube.com/channel/UC370GTtJnvWs8wDH9UXoBzQ?view_as=subscriber" target="_blank" class="footer__icon"><i class="bx bxl-youtube"></i></a>
+                <a href="https://www.behance.net/tanmaybrv"  target="_blank" class="footer__icon"><i class='bx bxl-behance'></i></a>
+              </div>
+              <p>&#169; 2020 - <span class="current_year"></span> copyright all right reserved</p>
+
+            </footer>
+
+            <! --==========scrollreveal============-->
+
+              <script src="https://unpkg.com/scrollreveal"></script>
+              <script src="https://kit.fontawesome.com/f6b5a1856e.js" crossorigin="anonymous"></script>
+              <! --==========sweetalert============-->
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <! --==========main js============-->
+
+                  <script src="js/index.js"></script>
+                  <script src="prism/prism.js"></script>
+                  <script>
+                    //current year
+                    var dt = new Date();
+                    document.querySelector(".current_year").innerHTML = dt.getFullYear()
+                  </script>
+</body>
+
+</html>

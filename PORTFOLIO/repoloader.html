@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <! --==========links============-->
+    <link rel="stylesheet" href="css/work.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon_io/site.webmanifest">
+
+    <! --=========== prism code ===========-->
+    <link rel="stylesheet" href="prism/prism.css">
+
+    <! --==========box icons============-->
+      <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
+      <title>TanCodes</title>
+</head>
+
+<body>
+  <! --==========Header============-->
+    <header class="l-header">
+      <nav class="nav bd-grid">
+        <div class="nav__logo_div">
+          <a href="#" class="nav__logo"> <img src="../img/logo_edited.png" alt=">_TanCodes">
+        </div>
+
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="#" class="nav__link active">Work</a>
+            </li>
+            <li class="nav__item">
+              <a href="index.html#home" class="nav__link">Portfolio</a>
+            </li>
+            <li class="nav__item">
+              <a href="index.html#contact" class="nav__link button-navbar-btn">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="bx bx-menu"></i>
+        </div>
+      </nav>
+    </header>
+    <main class="l-main">
+
+      <! --==========Home============-->
+        <section class="home bd-grid" id="home">
+          <div class="home__data">
+            <h2 class="home__title">
+       Repoloader with Django  <br />
+            </h2>
+            <div class="home__img">
+              <img src="img/repoloaderimg.png" alt="" />
+            </div>
+          </div>
+          <! --==========links============-->
+            <div class="home__social">
+              <a href="https://www.linkedin.com/in/tanmay-barvi-2a0206126/" target="_blank" class="home__social-icon"><i
+                  class="bx bxl-linkedin"></i></a>
+              <a href="https://github.com/TanCodes" target="_blank" class="home__social-icon"><i
+                  class="bx bxl-github"></i></a>
+              <a href="https://stackexchange.com/users/18443010/tanmay-brv" target="_blank" class="home__social-icon"><i
+                  class="bx bxl-stack-overflow"></i>
+              </a>
+            </div>
+        </section>
+
+        <! --==========about============-->
+
+          <section class="about section" id="about">
+            <div class="about__container bd-grid">
+              <div>
+
+                <p class="about__text">
+                  &#160;&#160; <span style="font-weight: bold;">R</span>epoLoader is for the developers who are constantly visiting Github which will make their work a little bit easy. It will save the developers time to visit GitHub and search the username of the particular repo and changing tabs and all this stuff so We have made the work simpler. Just search the username and you will get only what the user want. Yeah, only Repos.
+                  <br> <br>
+                 <strong>FEATURES</strong> 
+                  <ul style="list-style-type:disc; margin: 20px;">
+                    <li>It is Fast and Easy to use</li>
+                    <li>No need of any credentials.</li>
+                    <li>Users can also download the repo dataset in CSV, so they can use it for analysis, etc.</li>
+                    <li>NO need of opening GitHub and searching for the repos.</li>
+                    <li>Gives the name of the owner and the number of repositories is there in that.</li>
+                    <li>Shows only Repos name , with the last updated date and with the project links.</li>
+                    <li>Also shows the Main language used in the project with Forked repo or not.</li>
+                    <li>Shows the Pie chart for the most languages used by the user.</li>
+                    <li>Responsive website.</li>
+            
+                  </ul>
+                  <b></b>
+                  Soruce code here : <a style="text-decoration: underline black;"
+                    href="https://github.com/TanCodes/Repoloader-Django">Repoloader code</a>
+                  <br> <br>
+              
+                  View the website <a href="https://repoloader-django.vercel.app/" target="_blank">LIVE</a> <br>    <br> <br>
+<pre><code class="language-python">
+    from django.shortcuts import render
+    from bs4 import BeautifulSoup
+    import pandas as pd
+    import requests
+    import datetime
+    
+    """
+    > HOME  Page 
+    """
+    
+    
+    def home(request):
+        return render(request, "index.html")
+    
+    
+    """
+    > Main function to get the repo data and shows to user 
+    """
+    
+    
+    def get_repo(request):
+        if request.method == "POST":
+    
+            global USERNAME
+            USERNAME = request.POST["msg"]
+    
+            if not USERNAME or '/' in USERNAME or '?' in USERNAME:
+                ERROR = "Invalid username"
+                return render(request, "index.html", {"ERROR": ERROR})
+            else:
+                base_url = "https://github.com"
+                url = f"{base_url}/{USERNAME}?tab=repositories"
+    
+                # API DATA
+                link = f"https://api.github.com/users/{USERNAME}/repos?per_page=1000"
+                api_link = requests.get(link)
+                api_data = api_link.json()
+    
+                get_url = requests.get(url)
+    
+                # ^ ---- IF STATUS CODE IS 200 ----
+                if get_url.status_code == 200:
+                    data = BeautifulSoup(get_url.text, "html.parser")
+    
+                    # name of the Repo owner
+                    name_class = data.find_all(class_="p-name")
+                    for tag in name_class:
+                        NAME = tag.text.strip()
+                        print("Name:", NAME)
+    
+                    # Total repo
+                    repo_class = data.find(class_="Counter")
+                    TOTAL_REPO = repo_class.text
+                    print("Total repo:", TOTAL_REPO)
+                    to_compare = int(TOTAL_REPO)
+    
+                    # IF REPO SIZE IS = 0 THAT MEANS IT IS AN EMPTY REPO
+                    if to_compare == 0:
+                        print("EMPTY")
+                        empty_error = "This Repository is empty"
+                        return render(request, "index.html", {"ERROR": empty_error})
+                    else:
+                        repos_name = []
+                        repos_link = []
+                        repos_language = []
+                        repos_fork = []
+                        repos_date = []
+    
+                        # Repo table
+                        for items in api_data:
+                            repos_name.append(items["name"])
+    
+                            item_link = items["svn_url"]
+                            repos_link.append(item_link)
+    
+                            repos_language.append(items["language"])
+                            final_language = [
+                                "unknown" if i == None else i for i in repos_language
+                            ]
+    
+                            repos_fork.append(items["fork"])
+                            final_fork = [
+                                "✅" if i == True else "❌" if i == False else 0
+                                for i in repos_fork
+                            ]
+    
+                            item_date = items["updated_at"][:10]
+                            repos_date.append(item_date)
+    
+                        temp = list(
+                            zip(
+                                repos_name,
+                                repos_link,
+                                final_language,
+                                final_fork,
+                                repos_date,
+                            )
+                        )
+    
+                        # Number of is forked repo
+                        is_forked_count = final_fork.count("✅")
+    
+                        df = pd.DataFrame(
+                            temp,
+                            columns=[
+                                "Project Name",
+                                "Project Link",
+                                "Main Language",
+                                f"Is Forked? ({is_forked_count})",
+                                "Date",
+                            ],
+                        )  # Dataframe
+    
+                        global TABLE_REPO
+                        TABLE_REPO = df.sort_values(
+                            by="Date", ascending=False
+                        ).reset_index(
+                            drop=True
+                        )  # Sort by dates
+    
+                        # TABLE_REPO_FINAL
+                        TABLE_REPO_FINAL = TABLE_REPO.to_html(
+                            index="false", header="true", table_id="table"
+                        )
+    
+                        # Data dict
+                        global all_data
+                        all_data = {
+                            "USERNAME": USERNAME,
+                            "NAME": NAME,
+                            "TOTAL_REPO": TOTAL_REPO,
+                            "TABLE_REPO_FINAL": TABLE_REPO_FINAL,
+                        }
+    
+                        # PIE CHART
+                        counts = TABLE_REPO["Main Language"].value_counts()
+                        language_names = list(counts.index)
+                        language_values = counts.tolist()
+                        print("language_names", language_names)
+                        print("language_values", language_values)
+    
+                        #  ALERT MESSAGE
+                        global message
+                        if to_compare > 100:
+                            message = "Only displays the first 100 updated Repos"
+                            print(message)
+                        else:
+                            message = ""
+                        return render(
+                            request,
+                            "index.html",
+                            {
+                                "all_data": all_data,
+                                "message": message,
+                                "language_values": language_values,
+                                "language_names": language_names,
+                            },
+                        )
+    
+                # ! ----- ELSE SHOW THE ERROR ----
+                else:
+                    print(get_url.status_code)
+                    ERROR = f"Invalid username {USERNAME}"
+                    return render(request, "index.html", {"ERROR": ERROR})
+    
+        else:
+            return render(request, "index.html")
+    
+    
+    """
+    # > Download to CSV 
+    """
+    
+    
+    def downloaded_to_csv(request):
+        if request.method == "POST":
+            # ^ save csv
+    
+            suffix = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
+            filename = "_".join([USERNAME, suffix])
+            save = TABLE_REPO.to_csv(f"{filename}.csv")
+            text_message = (
+                f"Dataset has been downloaded in your local device as {filename}.csv"
+            )
+            return render(
+                request,
+                "index.html",
+                {"all_data": all_data, "text_message": text_message, "message": message},
+            )
+    
+        else:
+            return render(request, "index.html")
+</code> </pre>
+                </p>
+            </div>
+          </div>
+        </div>
+        <div class="count-class" style="text-align: center;">
+          <i class="far fa-eye"> 
+            <img src="https://hitwebcounter.com/counter/counter.php?page=7826152&style=0008&nbdigits=1&type=ip&initCount=0" title="page view" Alt="page view"   border="0" />
+          </i> 
+        </div>
+    </section>
+
+          <! --==========footer============-->
+            <footer class="footer">
+              <p class="footer__title">>_TanCodes</p>
+              <div class="footer__social">
+                <a href="https://www.instagram.com/_tancodes_/" class="footer__icon"  target="_blank"><i class="bx bxl-instagram"></i></a>
+                <a href="https://twitter.com/TanCodes" class="footer__icon"  target="_blank"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.youtube.com/channel/UC370GTtJnvWs8wDH9UXoBzQ?view_as=subscriber" target="_blank" class="footer__icon"><i class="bx bxl-youtube"></i></a>
+                <a href="https://www.behance.net/tanmaybrv"  target="_blank" class="footer__icon"><i class='bx bxl-behance'></i></a>
+              </div>
+              <p style="font-size: smaller; margin-bottom: 10px;">Tanmay Barvi , built with ☕️</p>
+              <p>&#169; 2020 copyright all right reserved</p>
+            </footer>
+
+            <! --==========scrollreveal============-->
+
+              <script src="https://unpkg.com/scrollreveal"></script>
+              <script src="https://kit.fontawesome.com/f6b5a1856e.js" crossorigin="anonymous"></script>
+              <! --==========sweetalert============-->
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <! --==========main js============-->
+
+         <script src="js/index.js"></script>
+         <! --=========== prism code ===========-->
+         <script src="prism/prism.js"></script>
+</body>
+
+</html>
